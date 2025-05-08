@@ -38,7 +38,7 @@ End-to-end data engineering pipeline on **Azure Databricks**. It includes **incr
 | Table     | Type | Logic                         |
 |-----------|------|-------------------------------|
 | customers | SCD1 | Upserts using Delta MERGE     |
-| orders    | SCD1 | Overwrite with unique ID      |
+| orders    | SCD1 | Upserts using Delta MERGE     |
 | products  | SCD2 | Using Delta Live Tables       |
 
 ---
