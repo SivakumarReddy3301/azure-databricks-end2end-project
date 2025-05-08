@@ -1,6 +1,6 @@
 # azure-databricks-end2end-project
 
-End-to-end data engineering pipeline on **Azure Databricks**. It includes **incremental data ingestion**, **dimensional modeling(STAR)**, **Data transformations**, **Slowly Changing Dimensions**,** Delta Live Tables**, **Unity Catalog** and **Workflow orchestration**.
+End-to-end data engineering pipeline on **Azure Databricks**. It includes **incremental data ingestion(Spark Structured Streaming)**, **Dimensional modeling(STAR)**, **Data transformations**, **Slowly Changing Dimensions**,**Delta Live Tables**, **Unity Catalog** and **Workflow orchestration**.
 
 ---
 
