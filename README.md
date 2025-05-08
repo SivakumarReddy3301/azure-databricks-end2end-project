@@ -1,1 +1,69 @@
 # azure-databricks-end2end-project
+
+This project demonstrates an end-to-end data engineering pipeline on **Azure Databricks** using the **medallion architecture** (Bronze → Silver → Gold). It includes **incremental data ingestion**, **dimensional modeling**, **SCD implementations**, and **workflow orchestration**.
+
+---
+
+## 🧱 Architecture
+
+- **Bronze Layer**: Raw incremental ingestion of `customers`, `orders`, `products` from ADLS
+- **Silver Layer**: Cleansed and transformed datasets stored as Delta tables
+- **Gold Layer**:
+  - `customers` → SCD Type 1
+  - `orders` → SCD Type 1 (Fact table)
+  - `products` → SCD Type 2 via **Delta Live Tables (DLT)**
+
+---
+
+## 🔄 Pipeline Workflow
+
+- Orchestrated using **Databricks Workflows**
+- Dependencies between notebooks defined in `main_pipeline.py`
+- Triggers ingest → transform → dimensional modeling in sequence
+
+---
+
+## ☁️ Cloud Setup
+
+- **Azure Data Lake Storage Gen2 (ADLS)** containers: `source`, `bronze`, `silver`, `gold`
+- **Unity Catalog** configured with:
+  - External locations
+  - Storage credentials
+  - Managed via access connectors
+
+---
+
+## 🗃️ Incremental Ingestion
+
+- Each ingest notebook:
+  - Reads source JSON/CSV files incrementally
+  - Tracks new files using file metadata or watermarks
+  - Writes raw Delta tables to Bronze
+
+---
+
+## 🧠 Slowly Changing Dimensions
+
+| Table     | Type | Logic                         |
+|-----------|------|-------------------------------|
+| customers | SCD1 | Upserts using Delta MERGE     |
+| orders    | SCD1 | Overwrite with unique ID      |
+| products  | SCD2 | Using Delta Live Tables       |
+
+---
+
+## 📂 Notebooks Overview
+
+- `notebooks/bronze/` → Raw ingest from source to ADLS
+- `notebooks/silver/` → Data cleansing, joins, validations
+- `notebooks/gold/` → SCD logic, surrogate keys, historical tracking
+- `pipeline/` → Master orchestration pipeline
+
+---
+
+## 🔧 Setup
+
+1. Configure Unity Catalog (run `unity_catalog_setup.sql`)
+2. Update ADLS paths in `configs/paths_config.py`
+3. Import notebooks into Databricks
+4. Import `end2end_PipelineJob.json` into Databricks Jobs UI
