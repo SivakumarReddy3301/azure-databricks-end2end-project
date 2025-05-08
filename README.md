@@ -18,7 +18,7 @@ This project demonstrates an end-to-end data engineering pipeline on **Azure Dat
 ## 🔄 Pipeline Workflow
 
 - Orchestrated using **Databricks Workflows**
-- Dependencies between notebooks defined in `main_pipeline.py`
+- Dependencies between notebooks defined in a json file `pipeline folder`
 - Triggers ingest → transform → dimensional modeling in sequence
 
 ---
