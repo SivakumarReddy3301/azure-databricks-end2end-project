@@ -33,15 +33,6 @@ End-to-end data engineering pipeline on **Azure Databricks**. It includes **incr
 
 ---
 
-## 🗃️ Incremental Ingestion
-
-- Each ingest notebook:
-  - Reads source JSON/CSV files incrementally
-  - Tracks new files using file metadata or watermarks
-  - Writes raw Delta tables to Bronze
-
----
-
 ## 🧠 Slowly Changing Dimensions
 
 | Table     | Type | Logic                         |
@@ -54,9 +45,9 @@ End-to-end data engineering pipeline on **Azure Databricks**. It includes **incr
 
 ## 📂 Notebooks Overview
 
-- `notebooks/bronze/` → Raw ingest from source to ADLS
-- `notebooks/silver/` → Data cleansing, joins, validations
-- `notebooks/gold/` → SCD logic, surrogate keys, historical tracking
+- `bronze/` → Raw ingest from source to ADLS
+- `silver/` → Data cleansing, joins, validations
+- `gold/` → SCD logic, surrogate keys, historical tracking
 - `pipeline/` → Master orchestration pipeline
 
 ---
